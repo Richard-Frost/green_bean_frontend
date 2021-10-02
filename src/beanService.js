@@ -1,5 +1,5 @@
 class BeanService {
-    debugger
+   
     constructor(endpoint) {
         this.endpoint = endpoint 
     }
@@ -15,10 +15,7 @@ class BeanService {
             }
         })
     }
-
-
-
-
+    
     createBean() {
         const bean = {
             name: document.getElementById('name').value,

@@ -6,7 +6,7 @@ class Farmer {
         this.id = id
         this.name = name
         this.region = region
-        this.element = document.createElement('li')
+        this.element = document.createElement('div')
         //this.dataset.id = this.id
         this.element.id = `farmer-${this.id}`
         this.element.addEventListener('click', this.handleClick)
@@ -16,17 +16,13 @@ class Farmer {
     farmerHTML() {
 
         this.element.innerHTML += `
+    
         <div class="content-div">
-            <div class="content-title">
-                <h3> Coffee Farmers </h3>
-            </div
             <div class="content">
-                <h3> ${this.name} </h3>
-                <h3> ${this.region} </h3>
+                <h4> ${this.name} </h4>
+                <small> ${this.region}</small></br>
+                <button id='delete-bttn'>Delete</button>
             </div>
-            <br>
-            <button id='delete-bttn'>Delete</button>
-            <br>
         </div>
         `
         return this.element
@@ -40,8 +36,13 @@ class Farmer {
         Farmer.farmerForm.innerHTML += `
        
         <form id="new-farmer-form">
-            Name: <input type="text" id="name">
-            Region: <input type="text" id="region">
+            <b>Add a new coffee farmer</b>
+            <br>
+            <small>Name: </small></br> 
+            <input type="text" id="name"></br>
+            <small>Region:</small></br>
+            <input type="text" id="region"></br>
+            </br>
             <input type="submit" id="create">
         <form>
         `
@@ -54,8 +55,4 @@ class Farmer {
             farmerService.deleteFarmer(this.id)
         }
     }
-
-   
-
-
 }
