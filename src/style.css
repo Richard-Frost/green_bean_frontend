@@ -1,9 +1,11 @@
 body {
     color: black;
     background-image: url("green.jpg");
-    background-size:     cover;                      /* <------ */
-    background-repeat:   no-repeat;
-    background-position: center center;
+    min-height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
 }
 
 .content-title {
@@ -18,7 +20,16 @@ body {
    margin-top: 5px;
    background-color: rgba(1, 82, 1, 0.8);
    color: white;
-   padding: 2%;
+   padding: 5%;
+   border: 5px solid;
+   border-radius: 20px;
+}
+.content button {
+    background-color: rgb(87, 51, 5);
+    color: white;
+    border-radius:30% !important;
+    margin: 2px;
+    padding: 2%;
 }
 
 
@@ -68,3 +79,22 @@ h1, h2, h3, h4, h5, h6 {
      height: 100%;
  }
  
+a {
+    text-decoration: none;
+    color: white;
+
+  }
+
+  a:hover {
+    text-decoration: underline !important;
+  }
+
+  hr {
+    border: 1px solid white;
+    width: 100% !important;
+  }
+
+
+ header {
+     font-size: large;
+ }

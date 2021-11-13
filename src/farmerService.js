@@ -8,13 +8,11 @@ class FarmerService{
     getFarmers(){
         fetch(`${this.endpoint}/farmers`)
         .then(resp => resp.json())
-
         .then(farmers => {
-            for (const farmer of farmers) { 
-                const f = new Farmer(farmer.id, farmer.name, farmer.region)
-                console.log(f)
+            farmers.data.forEach(farmer => {
+                const f = new Farmer(farmer.id, farmer.attributes.name, farmer.attributes.region, farmer.attributes.beans)
                 f.slapOnDom()
-            }
+            })
         })
     }
 
@@ -34,21 +32,60 @@ class FarmerService{
 
         fetch(`${this.endpoint}/farmers`, configObj)
         .then(resp => resp.json())
-        .then(farmer => {
+        .then(farmer => {debugger
             const f = new Farmer(farmer)
-            f.slapOnDom()
+            //f.slapOnDom()
         })
     }
 
-    deleteFarmer(id) {
+    editFarmerFetch(id) {debugger
+        fetch(`http://127.0.0.1:3000/farmers/edit/${id}`)
+        .then(resp => resp.json())
+        .then(farmer => {
+                const f = new Farmer(farmer.data.id, farmer.data.attributes.name, farmer.data.attributes.region)
+                debugger
+                f.renderEditForm()
+            })
+        //})
+    }
+
+    editFarmer() {debugger
+        const farmer = {
+            name: document.getElementById('name').value,
+            region: document.getElementById('region').value,
+            id: document.getElementById('editId').value
+        }
+        const configObj = {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(farmer)
+        }
+        fetch(`${this.endpoint}/farmers/${farmer.id}`, configObj)
+        clearDiv()
+    }
+
+    getRegion(e) {
+        fetch(`http://127.0.0.1:3000/regions/${e.id}`)
+        .then(resp => resp.json())
+        .then(farmers => {
+            farmers.data.forEach(farmer => {
+                const f = new Farmer(farmer.id, farmer.attributes.name, farmer.attributes.region, farmer.attributes.beans)
+                f.slapOnDom()
+            })  
+        })
+    }
+
+    deleteFarmer(id) {debugger
         fetch(`${this.endpoint}/farmers/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             }
         }) 
-        .then(resp => resp.json())
-        .then(json => alert(json.message))
+        let deletedFarmer = document.getElementById(`${id}`)
+        deletedFarmer.remove()
+        
     }
-
 }

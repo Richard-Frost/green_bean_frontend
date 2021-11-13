@@ -1,0 +1,11 @@
+body {
+    background-color: blue;
+  }
+
+  h3 {
+    text-align: center;
+    font-size: 1em;
+    color: #009;
+    margin-bottom: .3em;
+    text-decoration: underline;
+  }
