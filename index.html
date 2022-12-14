@@ -4,19 +4,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="src/style.css" rel="stylesheet">
-    <title>Green Bean Coffee Log</title>
+    <title>Green Bean Coffee Journal</title>
 </head>
 <body>
-<header>Green Bean Coffee Log</header>
 <div class="side-box">
+    <button class="side-button" id="logoButton">Green Beans </button></br>
     <button class="side-button" id="farmerButton">Farmers</button></br>
     <button class="side-button" id="beanButton">Beans</button></body><br>
     <button class="side-button" id="regionsButton">Regions</button></html><br>
     <button class="side-button" id="beanForm">Submit a Bean</button></br>
     <button class="side-button" id="farmerForm">Submit a Farmer</button>
 </div>
-    <div id="content-div"> 
 
+    <div id="content-div"> 
         
         <div id="farmers-container">
         </div>
@@ -24,14 +24,24 @@
         <div id="beans-container">
         </div>
 
-        <div id="form-container"></div>
+        <div id="form-container">
+        </div>
     </div>
+
+
+<div id="user-comments-div"> submitted comments will appear here inside this div </div>
+
+<form id="user-comments-form">
+	<input id="user-comments-input"  type="text">
+	<input id="user-comments-submit"  type="submit">
+</form>
 
     <script src="src/farmer.js"></script>
     <script src="src/bean.js"></script>
     <script src="src/farmerService.js"></script>
     <script src="src/beanService.js"></script>
     <script src="index.js"></script>
+
 </body>
 </html>
 

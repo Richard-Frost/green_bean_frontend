@@ -21,8 +21,9 @@ class Bean {
                 <small> Farmer id: ${this.farmer_id} </small></br>
                 <small> Region: ${this.farmer_region} </small></br>
                 <p> Description: ${this.description} </p></br>
+                <button id='back-bttn' onClick="handleBack()">Back</button>
                 <button id='delete-bttn'onclick="beanService.deleteBean(${this.id})">Delete</button>
-                <button id='edit-bttn' onclick="editBean(${this.id})">Edit</button>
+                <button id='edit-bttn' onclick="beanService.editBeanFetch(${this.id})">Edit</button>
             </div>
              <br>
             <br>
@@ -31,27 +32,50 @@ class Bean {
         return this.element
     }
      
-    slapOnDom() {
-        Bean.beansContainer.appendChild(this.beanHTML())
+    static renderForm(id){
+        Bean.beanForm.innerHTML += `
+            <div class="content-div">
+                <div class="content">
+                    <form>
+                        <B>Add a new green coffee bean</b></br>
+                        <small>Name:</small><br>
+                        <input type="text" id="name"></br>
+                        <small>Farmer Id:</small></br>
+                        <input type="text" id="farmer_id" value="${id}"></br>
+                        <small>Description</small></br>
+                        <input type="text" id="description"></br>
+                        <br>
+                        <input type="submit" id="create">
+                    </form>
+                </div>
+            </div>
+        `
     }
 
-    static renderForm(id){
-        debugger
-        Bean.beanForm.innerHTML += `
-        <div class="content-div">
-            <div class="content">
-                    <B>Add a new green coffee bean</b></br>
-                    <small>Name:</small><br>
-                    <input type="text" id="name"></br>
-                    <small>Farmer Id:</small></br>
-                    <input type="text" id="farmer_id" value="${id}"></br>
-                    <small>Description</small></br>
-                    <input type="text" id="description"></br>
-                    <br>
-                    <input type="submit" id="create">
-                <form>
-            </div>
-        </div>
-        `
+    renderEditBeanForm() {
+        clearDiv()
+        beansContainer.innerHTML += `
+            <div class="content-div">
+                <div class="content">
+                    <form id="edit-bean-form">
+                        <B>Edit Bean</b></br>
+                        <small>Name:</small><br>
+                        <input type="text" id="name" value="${this.name}"></br>
+                        <small>Farmer Id:</small></br>
+                        <input type="text" id="farmer_id" value="${this.farmer_id}"></br>
+                        <small>Description</small></br>
+                        <input type="text" id="description" value="${this.description}"></br>
+                        <input type="hidden" id="bean_id" value="${this.id}">
+                        <br>
+                        <input type="submit" id="create">
+                    <form>
+                  </div>
+                </div>
+            `
+           beansContainer.addEventListener('submit', handleEditBeanSubmit)
+    }
+
+    slapOnDom() {
+        Bean.beansContainer.appendChild(this.beanHTML())
     }
 }

@@ -38,18 +38,17 @@ class FarmerService{
         })
     }
 
-    editFarmerFetch(id) {debugger
+    editFarmerFetch(id) {
         fetch(`http://127.0.0.1:3000/farmers/edit/${id}`)
         .then(resp => resp.json())
         .then(farmer => {
                 const f = new Farmer(farmer.data.id, farmer.data.attributes.name, farmer.data.attributes.region)
-                debugger
                 f.renderEditForm()
             })
         //})
     }
 
-    editFarmer() {debugger
+    editFarmer() {
         const farmer = {
             name: document.getElementById('name').value,
             region: document.getElementById('region').value,
@@ -77,15 +76,15 @@ class FarmerService{
         })
     }
 
-    deleteFarmer(id) {debugger
+    deleteFarmer(id) {
         fetch(`${this.endpoint}/farmers/${id}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json'
             }
         }) 
+
         let deletedFarmer = document.getElementById(`${id}`)
         deletedFarmer.remove()
-        
     }
 }

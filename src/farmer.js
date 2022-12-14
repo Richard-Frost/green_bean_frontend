@@ -8,17 +8,16 @@ class Farmer {
         this.element = document.createElement('div')
         this.beans = beans
         this.element.id = `farmer-${this.id}`
-        this.element.addEventListener('click', this.handleClick)
+        //this.element.addEventListener('click', this.handleClick)
     }
     
     farmerHTML() {
         this.element.innerHTML += `
         <div class="content-div" id="${this.id}">
             <div class="content">
-                <h4> ${this.name} </h4>
+                <h4> ${this.name} - ${this.id} </h4>
                 <small> ${this.region} </small></br>
-               
-
+            
                 <button id='details-bttn' onClick="toggleDetails(${this.id})">Details</button>
                 <br>
                 <div id="toggle-${this.id}" style="display:none">
@@ -27,7 +26,7 @@ class Farmer {
                 <br>
                     <h4> Beans: </h4>
                     <br>
-                    ${this.beans.length > 0 ? this.beans.map( bean => { return `<a href="#" data-id="${bean.id}" onclick="beanService.showBean(this)">${bean.name}</a></br>`}) : `<SMALL>This farmer does not currently have beans listed</SMALL>`}
+                    ${this.beans.length > 0 ? this.beans.map( bean => { return `<a href="#" data-id="${bean.id}" onclick="beanService.showBean(this);setBack()">${bean.name}</a></br>`}) : `<SMALL>This farmer does not currently have beans listed</SMALL>`}
                     <br>
                     <button id='delete-bttn' onclick="farmerService.deleteFarmer(${this.id})">Delete</button>
                     <button id='edit-bttn' onclick="farmerService.editFarmerFetch(${this.id})">Edit</button>
@@ -83,7 +82,6 @@ class Farmer {
 
     renderEditForm() {
         clearDiv()
-        debugger
         farmersContainer.innerHTML += `
             <div class="content-div">
             <div class="content">

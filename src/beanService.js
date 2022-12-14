@@ -4,13 +4,13 @@ class BeanService {
         this.endpoint = endpoint 
     }
 
-    getBeans(){
+    getBeans() {
         fetch(`${this.endpoint}/beans`)
         .then(resp => resp.json())
 
         .then(beans => {
             beans.data.forEach(bean => {
-                const b = new Bean(bean.id, bean.attributes.name, bean.attributes.description, bean.attributes.farmer_id, bean.attributes.farmer.name, bean.attributes.farmer.region)
+                const b = new Bean(bean.id, bean.attributes.name, bean.attributes.description)
                 b.slapOnDom()
             })
         })
@@ -60,8 +60,17 @@ class BeanService {
         deletedBean.remove()
     }
 
+    editBeanFetch(id) {
+        fetch(`http://127.0.0.1:3000/beans/edit/${id}`)
+        .then(resp => resp.json())
+        .then(bean => {
+            const b = new Bean (bean.data.id, bean.data.attributes.name, bean.data.attributes.description, bean.data.attributes.farmer_id, bean.data.attributes.farmer.name, bean.data.attributes.farmer.region)
+            b.renderEditBeanForm()
+        })
+    }
 
-    editBean() {
+
+    editBean(id) {
         const bean = {
             name: document.getElementById('name').value,
             farmer_id: document.getElementById('farmer_id').value,
@@ -78,6 +87,6 @@ class BeanService {
         }
 
         fetch(`${this.endpoint}/beans/${bean.id}`, configObj)
-        .then(clearDiv())
+          .then(clearDiv())
     }
 }
