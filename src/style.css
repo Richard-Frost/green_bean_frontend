@@ -157,15 +157,9 @@ a {
    padding-right: 5px;
    margin-left: 5px;
  }
- .nav-link {
-   color: rgba(1, 82, 1, 0.8);
- }
- .navbar-toggler {
-   color: rgb(107, 1, 1) !important;
-   background-color:rgba(16, 122, 220, .5) !important;
- }
+
  body > nav > div {
-    background-color: hsla(120, 65%, 28%, 0.8) !important;
+    background-color: none !important;
  }
  body > nav{
     background-color: green !important;
